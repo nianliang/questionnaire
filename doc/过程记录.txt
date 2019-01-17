@@ -1,0 +1,22 @@
+vue init webpack qss_web
+
+npm install jquery --save
+
+npm install iview --save
+
+npm install lodash --save
+
+npm install vuex --save
+
+npm install axios --save
+
+npm install iview-loader --save
+
+npm install less less-loader --save 缺乏这个时，运行会报vue load css之类的错误，同时需在build/webpack.base.conf.js中的mudle的rules下增加：
+{
+        test: /\.scss$/,
+        loaders: ["style", "css", "sass","style-loader!css-loader!less-loader"]
+      },
+
+
+前端命名规范
