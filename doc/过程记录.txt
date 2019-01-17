@@ -12,11 +12,8 @@ npm install axios --save
 
 npm install iview-loader --save
 
-npm install less less-loader --save 缺乏这个时，运行会报vue load css之类的错误，同时需在build/webpack.base.conf.js中的mudle的rules下增加：
+npm install less less-loader --save 缂轰箯杩欎釜鏃讹紝杩愯浼氭姤vue load css涔嬬被鐨勯敊璇紝鍚屾椂闇�鍦╞uild/webpack.base.conf.js涓殑mudle鐨剅ules涓嬪鍔狅細
 {
         test: /\.scss$/,
         loaders: ["style", "css", "sass","style-loader!css-loader!less-loader"]
       },
-
-
-前端命名规范
