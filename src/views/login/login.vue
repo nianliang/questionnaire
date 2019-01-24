@@ -1,13 +1,13 @@
 <style lang="less">
   .login{
-    .form{
-      width: 300px;
-      border: solid 1px #dcdee2;
-      border-radius: 6px;
-      margin: 32px;
-      padding: 8px;
-      /*<!--border: @border-style-base @border-width-base @border-color-base;-->
-      <!--border-radius: @border-radius-base;-->*/
+    .form-area{
+      width: 400px;
+      .form{
+        border: solid 1px #dcdee2;
+        border-radius: 6px;
+        margin: 32px;
+        padding: 8px;
+      }
     }
   }
 </style>
@@ -15,7 +15,7 @@
   <div class="login flex flex-v-top">
     <ImgDemo class="flex-1 text-right"></ImgDemo>
     <div class="flex-1 text-left" >
-      <div>
+      <div class="form-area">
         <div class="text-center">
           <span class=" f-s-16">调研系统</span>
         </div>
@@ -69,8 +69,11 @@
       handleSubmit (name) {
         this.$refs[name].validate((valid) => {
           if (valid) {
+            this.$router.push('/index')
             this.$Message.success('登录成功!')
+            // todo 用户信息保存，token保存，全局配置信息获取等
           } else {
+            this.$Message.success('登录失败!')
           }
         })
       }

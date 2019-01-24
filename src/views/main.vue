@@ -1,0 +1,100 @@
+<style lang="less">
+  @import '../my-theme/index.less';
+.main{
+  background: @layout-body-background;
+  font-size: @font-size-base;
+  .main-head{
+    display: block;
+    height: 64px;
+    padding: 0 32px 0 32px;
+    background: #3f3f3f;
+    font-size: @font-size-large;
+    color: #ffffff;
+    .top-text{
+      text-align: right;
+      padding: 19px;
+      a{
+        color: #ffffff;
+      }
+      a.active, a:hover{
+        color: @link-hover-color;
+      }
+    }
+  }
+  .ivu-affix{
+    background: @body-background;
+  }
+  .main-body{
+    padding: 8px;
+    height: 500px;
+    .menu{
+      a{
+        color: inherit; // 屏蔽route的a标签颜色
+      }
+    }
+    .panel{
+      padding-left: 10px;
+    }
+  }
+  .ivu-affix{
+    z-index: 901; // 此处默认值是10，因menu的z-index的值为900
+  }
+}
+</style>
+<template>
+  <div class="main">
+    <Affix :offset-top="0" style="z-index: 910">
+      <div class="main-head flex">
+        <div class="flex flex-v-center">
+          <img src="static/images/logo.png"/><span class="m-l-8">XXX调研系统</span>
+        </div>
+        <div class="flex-1 top-text">
+          <Icon type="md-help-circle" class="m-r-8"/>
+          <a class="m-r-8">帮助</a>
+          <Icon type="md-contact" class="m-r-8"/>
+          <a>管理员</a>
+        </div>
+      </div>
+    </Affix>
+    <div class="main-body">
+      <Split v-model="panelPer">
+        <div slot="left" class="menu">
+          <Menu theme="light" width="auto" :active-name="activeMenu">
+            <template v-for="(menu,key) in menuData">
+              <customMenu :menu="menu" :key="key" @menu-click="handleMenuClick"></customMenu>
+            </template>
+          </Menu>
+        </div>
+        <div slot="right" class="panel">
+          <router-view></router-view>
+          <!--<keep-alive>-->
+            <!--<router-view  v-if="$route.meta.keepAlive"></router-view>&lt;!&ndash;@updateActive="updateActive" :showBread="showBread" :maxWidth="maxWidth"&ndash;&gt;-->
+          <!--</keep-alive>-->
+          <!--<router-view  v-if="!$route.meta.keepAlive"></router-view>-->
+        </div>
+      </Split>
+    </div>
+  </div>
+</template>
+<script>
+  import demoData from '../data/demo_data.js'
+  import customMenu from './components/custom_menu.vue'
+  export default {
+    components: {
+      customMenu
+    },
+    data () {
+      return {
+        panelPer: 0.2,
+        active: {},
+        menuData: demoData.menuData,
+        activeMenu: ''
+      }
+    },
+    methods: {
+      handleMenuClick (menu) {
+        this.activeMenu = menu
+      }
+    }
+  }
+</script>

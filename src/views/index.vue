@@ -1,6 +1,6 @@
 <style lang="less">
   @import '../my-theme/index.less';
-.index-body{
+.index{
   background: @body-background;
   font-size: @font-size-base;
   .index-head{
@@ -21,14 +21,14 @@
   .ivu-affix{
     background: @body-background;
   }
-}
-.main-body{
-  text-align: center;
-  height: 1000px;
+  .index-body{
+    text-align: center;
+    height: 1000px;
+  }
 }
 </style>
 <template>
-<div class="index-body p-lr-32">
+<div class="index p-lr-32">
   <!--顶部条-->
   <div>
     <Affix :offset-top="0">
@@ -49,19 +49,11 @@
     </Affix>
   </div>
   <!--中间主体部分，包括左侧菜单和右侧界面-->
-  <div class="main-body text-center">
+  <div class="index-body text-center">
     <Login v-if="active.login"></Login>
     <Register v-if="active.register" @login="handleRegisterLogin"></Register>
     <Help v-if="active.help"></Help>
     <About v-if="active.about"></About>
-    <Split v-model="panelPer" v-if="false">
-      <div slot="left" class="demo-split-pane">
-        Left Pane
-      </div>
-      <div slot="right" class="demo-split-pane">
-        Right Pane
-      </div>
-    </Split>
   </div>
   <div>
     xxx.com © 2017-2019 文思海辉技术有限公司版权所有 京ICP备17009400号-6
@@ -79,7 +71,6 @@
     },
     data () {
       return {
-        panelPer: 0.5,
         active: {
           home: false,
           help: false,
