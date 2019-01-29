@@ -2,7 +2,7 @@
 
 </style>
 <template>
-  <div>
+  <div class="customer">
     这里是项目管理
   </div>
 </template>

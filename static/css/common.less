@@ -70,6 +70,17 @@
 .getDistance(40px);
 .getDistance(48px);
 
+/*宽度*/
+.getWidth(@value) {
+  @name:unit(@value);
+  .w-@{name}{
+    width: @value !important;
+  }
+}
+.getWidth(100);
+.getWidth(150);
+.getWidth(200);
+
 /* font-size */
 .font(@value){
   @name:unit(@value);
@@ -99,6 +110,12 @@
 
 .flex {
   display: flex!important;
+}
+.flex-inline {
+  display: inline-flex;
+}
+.flex-wrap{
+  flex-wrap: wrap;
 }
 .flex-col{
   display: flex;
@@ -168,9 +185,6 @@
 .pull-right{
   float: right;
 }
-.flex-wrap{
-  flex-wrap: wrap;
-}
 .break-word{
   word-wrap:break-word;
   word-break:break-all;
@@ -196,4 +210,11 @@
 
 .inline-block {
   display: inline-block;
+}
+
+/*功能区下的字体图标，将来会被图片替代*/
+.operate-area{
+  //i{
+  //  font-size: 24px;
+  //}
 }

@@ -11,7 +11,7 @@ const routes = [
     ]
   },
   {
-    path: '/project-manage',
+    path: '/project_manage',
     meta: {
       title: '项目管理'
     },
@@ -20,6 +20,19 @@ const routes = [
       {
         path: '/project',
         component: (resolve) => require(['@/views/project_manage/index.vue'], resolve)
+      }
+    ]
+  },
+  {
+    path: '/customer_manage',
+    meta: {
+      title: '客户管理'
+    },
+    component: (resolve) => require(['@/views/main.vue'], resolve),
+    children: [
+      {
+        path: '/customer',
+        component: (resolve) => require(['@/views/customer_manage/index.vue'], resolve)
       }
     ]
   }

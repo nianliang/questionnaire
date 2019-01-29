@@ -18,7 +18,7 @@ export default {
     {
       id: 15,
       title: '客户管理',
-      route_link: ''
+      route_link: '/customer'
     },
     {
       id: 4,
@@ -76,6 +76,16 @@ export default {
       id: 14,
       title: '分发设置',
       route_link: ''
+    }
+  ],
+  customer: [
+    {
+      id: 1,
+      company: '百度',
+      department: '',
+      contacts: '李广利',
+      phone: '13233474068',
+      pwd: ''
     }
   ]
 }

@@ -26,15 +26,17 @@ module.exports = {
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     "vue/no-parsing-error": [2, { "x-invalid-end-tag": false }],
-    // "indent": ['error', 2], // 缩进风格
     "eqeqeq": 0, // 2必须使用全等，0可使用==
     'indent': 'off',
     'vue/script-indent': [
       'error',
       2,
       {
-        'baseIndent': 1
+        'baseIndent': 1,
+        'switchCase': 1, // 此处解决switch与case同缩进的问题
+        "ignores": []
       }
-    ]
+    ],
+    'no-mixed-operators': 0 // 同样优先级的运算符加括号的配置关闭
   }
 }

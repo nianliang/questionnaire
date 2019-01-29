@@ -32,9 +32,6 @@
               <Icon type="ios-lock-outline" slot="prepend"></Icon>
               </Input>
             </FormItem>
-            <!--<FormItem class="text-center">
-
-            </FormItem>-->
           </Form>
           <div class="text-center m-b-8"><Button type="primary" @click="handleSubmit('form')" style="width: 200px">登录</Button></div>
           <div class="text-right"><img class="m-r-8" src="static/images/weixin.png"/><br><span>微信登录</span></div>
@@ -45,6 +42,7 @@
 </template>
 <script>
   import ImgDemo from './components/imgDemo.vue'
+  import CommonHttp from '@/server/http/common.js'
   export default {
     components: {
       ImgDemo
@@ -52,8 +50,8 @@
     data () {
       return {
         formData: {
-          user: '',
-          password: ''
+          user: '18311178399',
+          password: '1234abcd'
         },
         formRule: {
           user: [
@@ -69,9 +67,17 @@
       handleSubmit (name) {
         this.$refs[name].validate((valid) => {
           if (valid) {
-            this.$router.push('/index')
-            this.$Message.success('登录成功!')
-            // todo 用户信息保存，token保存，全局配置信息获取等
+            CommonHttp.login(this.formData)
+              .then(data => {
+                // 需将token写入vuex
+                this.$store.commit('setToken', data.token)
+                this.$Message.success('登录成功!')
+              })
+              .catch(error => {
+                this.$Message.warning('登录失败:', error)
+              })
+              // this.$router.push('/index')
+              // todo 用户信息保存，token保存，全局配置信息获取等
           } else {
             this.$Message.success('登录失败!')
           }
