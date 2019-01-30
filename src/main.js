@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
 import iView from 'iview'
 import globalComponents from './components/global_components' // 注册全局组建
 import 'iview/dist/styles/iview.css'
@@ -21,5 +22,6 @@ Vue.use(globalComponents)
 // })
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')

@@ -70,14 +70,16 @@
             CommonHttp.login(this.formData)
               .then(data => {
                 // 需将token写入vuex
+                // todo 用户信息保存，token保存，全局配置信息获取等
                 this.$store.commit('setToken', data.token)
+                this.$store.commit('setUser', data.user)
                 this.$Message.success('登录成功!')
+                this.$router.push('/index')
               })
               .catch(error => {
+                console.log('登录失败：', error)
                 this.$Message.warning('登录失败:', error)
               })
-              // this.$router.push('/index')
-              // todo 用户信息保存，token保存，全局配置信息获取等
           } else {
             this.$Message.success('登录失败!')
           }

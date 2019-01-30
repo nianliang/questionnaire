@@ -10,7 +10,8 @@ export default new Vuex.Store({
     createPersistedState()
   ],
   state: {
-    token: ''
+    token: '',
+    loginUser: Object.create(null)
   },
   mutations,
   actions

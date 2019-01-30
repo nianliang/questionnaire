@@ -3,6 +3,9 @@ const mutations = {
   [types.SET_TOKEN] (state, token) {
     state.token = token
   },
+  [types.SET_USER] (state, user) {
+    state.loginUser = user
+  },
   [types.SET_CONFIG] (state, config) {
     state.config = config
   },
