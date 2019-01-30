@@ -8,6 +8,7 @@
   </div>
 </template>
 <script>
+  import demoData from '../data/demo_data'
   export default {
     name: 'UrlTable',
     props: {
@@ -15,13 +16,13 @@
         type: String,
         default: ''
       },
+      params: {
+        type: Object,
+        default: () => Object.create(null)
+      },
       columns: {
         type: Array,
         default: () => []
-      },
-      loading: {
-        type: Boolean,
-        default: true
       },
       showPage: {
         type: Boolean,
@@ -33,25 +34,52 @@
         data: [],
         curPage: 1,
         pageSize: 10,
-        total: 0
+        total: 0,
+        loading: false
       }
     },
     methods: {
+      list (page = 1, pageSize = 10) {
+        if (!this.url) {
+          this.data = []
+          return
+        }
+        this.loading = true
+        this.curPage = page
+        this.pageSize = pageSize
+        switch (this.url) {
+          case this.routeMap.customerList:
+            this.total = demoData.customer.length
+            this.data = demoData.customer.slice((page - 1) * pageSize, page * pageSize)
+            this.loading = false
+            break
+          default:
+            break
+        }
+        // todo 正式api后，需放开下列代码
+        /* let params = {
+          page: page,
+          iDisplayLength: this.pageSize
+        } */
+        /* this.axios.get(this.url, {params: Object.assign(params, this.params)})
+          .then(data => {
+            this.total = data.total
+            this.data = data.data
+          })
+          .catch(error => {
+            console.warn('error:', this.url, error)
+          }) */
+      },
       handlePageChange (page) {
         this.curPage = page
-        this.$emit('page-change', page, this.pageSize)
+        this.list(this.curPage, this.pageSize)
       },
       handlePageSizeChange (pageSize) {
         this.pageSize = pageSize
-        this.$emit('page-change', this.curPage, pageSize)
+        this.list(this.curPage, this.pageSize)
       },
       handleSelectChange (selection) {
         this.$emit('on-selection-change', selection)
-      }
-    },
-    watch: {
-      url (curVal, oldVal) {
-        console.log('url变啦：', curVal, oldVal)
       }
     }
   }

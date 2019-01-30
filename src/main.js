@@ -5,10 +5,13 @@ import App from './App'
 import router from './router'
 import store from './store'
 import iView from 'iview'
+import _ from 'lodash'
+import routeMap from './server/route/map' // todo连接正式api后需删除此处代码
 import globalComponents from './components/global_components' // 注册全局组建
 import 'iview/dist/styles/iview.css'
 // import './my-theme/index.less'
-
+Vue.prototype.routeMap = routeMap // todo 连接正式api后需删除此处代码
+Vue.prototype._ = _
 Vue.config.productionTip = false
 
 Vue.use(iView)

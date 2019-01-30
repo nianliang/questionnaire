@@ -37,6 +37,7 @@ module.exports = {
         "ignores": []
       }
     ],
+    'spaced-comment': 0,
     'no-mixed-operators': 0 // 同样优先级的运算符加括号的配置关闭
   }
 }

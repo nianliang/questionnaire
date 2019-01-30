@@ -2,24 +2,24 @@
   .customer{
     padding: 8px;
     .operate-area{
-
+      .ivu-select-dropdown-list{
+        max-height: 150px;
+      }
     }
   }
 </style>
 <template>
   <div class="customer">
     <div class="operate-area flex">
-      <div class="flex-1">
-        <AutoComplete v-model="condition.company" :data="companyList" @on-search="handleSearchCompany" placeholder="请输入客户公司名称" style="width:200px" icon="md-search" :filter-method="filterCompany">
-          <Option v-for="item in companyList" :value="item.id" :key="item.id">{{ item.company }}</Option>
+      <div class="flex-1 f-s-22"><Icon type="md-add" /><Icon type="md-trash" /></div>
+      <div>
+        <AutoComplete v-model="condition.company" :data="_.map(companyList, 'company')" placeholder="请输入客户公司名称" style="width:200px" icon="md-search" :filter-method="filterCompany" @on-change="handleCompanyChange">
         </AutoComplete>
-        <Input v-model="condition.phone" placeholder="请输入联系人电话" class="m-l-8 m-r-8" style="width: 150px"/>
-        <Input v-model="condition.contacts" placeholder="请输入联系人名称" style="width: 150px"/>
+        <Input v-model="condition.phone" placeholder="请输入联系人电话" class="m-l-8 m-r-8" style="width: 150px" @on-change="handlePhone" @on-blur="handlePhone"/>
+        <Input v-model="condition.contacts" placeholder="请输入联系人名称" style="width: 150px" @on-change="handleContacts" @on-blur="handleContacts"/>
       </div>
-      <div class="text-right f-s-22"><Icon type="md-add" /><Icon type="md-trash" /></div>
     </div>
-    <UrlTable url="" :columns="columns" @page-change="handlePageChange" @on-selection-change="handleSelectChange"></UrlTable>
-    <!--<DataTable :data="list" :columns="columns" :loading="loading" @page-change="handlePageChange" :total="companyList.length" @on-selection-change="handleSelectChange"></DataTable>-->
+    <UrlTable ref="table" :url="url" :columns="columns"></UrlTable>
   </div>
 </template>
 <script>
@@ -32,6 +32,7 @@
     },
     data () {
       return {
+        url: this.routeMap.customerList,
         condition: {
           company: '',
           contacts: '',
@@ -77,38 +78,46 @@
             minWidth: 100,
             tooltip: true
           }
-        ]
+        ],
+        timer: null
       }
     },
     mounted () {
-      this.loading = true
       setTimeout(() => {
-        this.loading = false
         for (let i = 0; i < 22; i++) {
           demoData.customer.push({
             id: 10 + i,
-            company: '百度',
+            company: '百度' + i,
             department: '',
             contacts: '李广利',
             phone: '13233474068',
             pwd: ''
           })
           this.companyList = demoData.customer
-          this.list = this.companyList.slice(0, 10)
+          // this.list = this.companyList.slice(0, 10)
+          this.$refs['table'].list()
         }
       }, 2000)
     },
     methods: {
-      handleSearchCompany () {
-
-      },
       filterCompany (value, option) {
-
+        return option.indexOf(value) !== -1
       },
-      handlePageChange (page, pageSize) {
-        this.list = this.companyList.slice((page - 1) * pageSize, page * pageSize)
+      handleCompanyChange (value) {
+        this.condition.company = value
+        this.getList()
       },
-      handleSelectChange (selection) {
+      handlePhone () {
+        this.getList()
+      },
+      handleContacts () {
+        this.getList()
+      },
+      getList () {
+        clearTimeout(this.timer)
+        this.timer = setTimeout(() => {
+          this.$refs['table'].list()
+        }, 1000)
       }
     }
   }
