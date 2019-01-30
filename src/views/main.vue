@@ -52,7 +52,14 @@
           <Icon type="md-help-circle" class="m-r-8"/>
           <a class="m-r-8">帮助</a>
           <Icon type="md-contact" class="m-r-8"/>
-          <a>管理员</a>
+          <Dropdown style="text-align: center" @on-click="handleLoginOut">
+            <a>管理员
+              <Icon type="ios-arrow-down"></Icon>
+            </a>
+            <DropdownMenu slot="list">
+              <DropdownItem name="logout">退出</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
         </div>
       </div>
     </Affix>
@@ -94,6 +101,13 @@
     methods: {
       handleMenuClick (menu) {
         this.activeMenu = menu
+      },
+      handleLoginOut (dropdownItem) {
+        if (dropdownItem === 'logout') {
+          this.$store.commit('setToken', '')
+          this.$store.commit('setUser', null)
+          this.$router.push('/')
+        }
       }
     }
   }

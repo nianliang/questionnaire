@@ -11,7 +11,7 @@ export default new Vuex.Store({
   ],
   state: {
     token: '',
-    loginUser: Object.create(null)
+    loginUser: null
   },
   mutations,
   actions
