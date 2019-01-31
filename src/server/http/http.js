@@ -5,7 +5,6 @@ class ServerHttp {
   constructor () {
     this.map = map
     this.axios = axios
-    console.log('this.map:', this.map)
   }
 
   /**

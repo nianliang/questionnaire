@@ -12,10 +12,9 @@
   <div class="customer">
     <div class="operate-area flex">
       <!--<div class="flex-1 f-s-22"><Icon type="md-add" class="m-r-8" @click="add"/><Icon type="md-trash" /></div>-->
-      <div class="flex-1 f-s-22"><Button type="primary" @click="openForm()" class="m-r-8" icon="md-add">新增</Button>
-        <Button @click="del(ids)">批量删除</Button></div>
+      <div class="flex-1 f-s-22"><Button type="primary" @click="openForm()" class="m-r-8" icon="md-add">新增</Button><Button @click="del(ids)">批量删除</Button></div>
       <div>
-        <AutoComplete v-model="condition.company" :data="_.map(companyList, 'company')" placeholder="请输入客户公司名称" style="width:200px" icon="md-search" :filter-method="filterCompany" @on-change="handleCompanyChange">
+        <AutoComplete v-model="condition.company" :data="companyList" placeholder="请输入客户公司名称" style="width:200px" icon="md-search" :filter-method="filterCompany" @on-change="handleCompanyChange">
         </AutoComplete>
         <Input v-model="condition.phone" placeholder="请输入联系人电话" class="m-l-8 m-r-8" style="width: 150px" @on-change="handlePhone" @on-blur="handlePhone"/>
         <Input v-model="condition.contacts" placeholder="请输入联系人名称" style="width: 150px" @on-change="handleContacts" @on-blur="handleContacts"/>
@@ -135,10 +134,9 @@
             phone: '13233474068',
             pwd: ''
           })
-          this.companyList = demoData.customer
-          // this.list = this.companyList.slice(0, 10)
-          this.$refs['table'].list()
         }
+        this.companyList = this._.map(demoData.customer, 'company')
+        this.$refs['table'].list()
       }, 2000)
     },
     methods: {
@@ -182,7 +180,6 @@
       },
       handleSelectChange (selection) {
         this.ids = this._.map(selection, 'id')
-        console.log('ids:', this.ids)
       }
     }
   }

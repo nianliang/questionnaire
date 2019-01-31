@@ -1,5 +1,5 @@
 <template>
-  <div class="m-tb-8">
+  <div class="m-tb-16">
     <Table :data="data" :columns="columns" stripe :loading="loading" @on-selection-change="handleSelectChange">
     </Table>
     <div v-if="showPage" class="text-right m-t-8">
