@@ -49,7 +49,6 @@
         this.pageSize = pageSize
         switch (this.url) {
           case this.routeMap.customerList:
-            console.log(this.params)
             let tempList = demoData.customer
             if (this.params.company) {
               tempList = tempList.filter(item => {

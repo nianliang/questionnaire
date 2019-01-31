@@ -11,7 +11,9 @@
 <template>
   <div class="customer">
     <div class="operate-area flex">
-      <div class="flex-1 f-s-22"><Icon type="md-add" class="m-r-8" /><Icon type="md-trash" /></div>
+      <!--<div class="flex-1 f-s-22"><Icon type="md-add" class="m-r-8" @click="add"/><Icon type="md-trash" /></div>-->
+      <div class="flex-1 f-s-22"><Button type="primary" @click="openForm()" class="m-r-8" icon="md-add">新增</Button>
+        <Button @click="del(ids)">批量删除</Button></div>
       <div>
         <AutoComplete v-model="condition.company" :data="_.map(companyList, 'company')" placeholder="请输入客户公司名称" style="width:200px" icon="md-search" :filter-method="filterCompany" @on-change="handleCompanyChange">
         </AutoComplete>
@@ -19,16 +21,19 @@
         <Input v-model="condition.contacts" placeholder="请输入联系人名称" style="width: 150px" @on-change="handleContacts" @on-blur="handleContacts"/>
       </div>
     </div>
-    <UrlTable ref="table" :url="url" :columns="columns" :params="condition"></UrlTable>
+    <UrlTable ref="table" :url="url" :columns="columns" :params="condition" @on-selection-change="handleSelectChange"></UrlTable>
+    <CustomerForm ref="CustomerForm" @success="getList"></CustomerForm>
   </div>
 </template>
 <script>
   import DataTable from '@/components/data_table.vue'
   import UrlTable from '@/components/url_table.vue'
   import demoData from '../../data/demo_data.js'
+  import CustomerForm from './component/customer_form.vue'
+  import CustomerHttp from 'server/http/customer'
   export default {
     components: {
-      DataTable, UrlTable
+      DataTable, UrlTable, CustomerForm
     },
     data () {
       return {
@@ -45,7 +50,7 @@
           {
             type: 'selection',
             title: '选择',
-            minWidth: 60,
+            minWidth: 20,
             tooltip: true
           },
           {
@@ -57,7 +62,7 @@
           {
             title: '公司名称',
             key: 'company',
-            minWidth: 150,
+            minWidth: 120,
             tooltip: true
           },
           {
@@ -77,9 +82,46 @@
             key: 'phone',
             minWidth: 100,
             tooltip: true
+          },
+          {
+            title: '操作',
+            minWidth: 120,
+            align: 'center',
+            render: (h, params) => {
+              return h('div', [
+                h('a', {
+                  'class': 'm-r-8',
+                  on: {
+                    click: (e) => {
+                      e.stopPropagation()
+                      this.openForm(params.row.id, false)
+                    }
+                  }
+                }, '查看'),
+                h('a', {
+                  class: 'm-r-8',
+                  on: {
+                    click: (e) => {
+                      e.stopPropagation()
+                      this.openForm(params.row.id, true)
+                    }
+                  }
+                }, '编辑'),
+                h('a', {
+                  class: 'text-red nohover',
+                  on: {
+                    click: (e) => {
+                      e.stopPropagation()
+                      this.del(params.row.id)
+                    }
+                  }
+                }, '删除')
+              ])
+            }
           }
         ],
-        timer: null
+        timer: null,
+        ids: []
       }
     },
     mounted () {
@@ -118,6 +160,29 @@
         this.timer = setTimeout(() => {
           this.$refs['table'].list()
         }, 1000)
+      },
+      /*
+      * 新增时，id为null，editable为null
+      * 修改为id为具体值，editable为true
+      * 查看详情id为具体值，editable为false
+      * */
+      openForm (id = '', editable = true) {
+        this.$refs['CustomerForm'].open(id, editable)
+      },
+      del (ids) {
+        CustomerHttp.del(ids)
+          .then(data => {
+            this.$Message.success('删除成功！')
+            this.$refs['table'].list()
+          })
+          .catch(error => {
+            this.$Message.warning('删除失败！')
+            console.warn('删除客户失败：', error)
+          })
+      },
+      handleSelectChange (selection) {
+        this.ids = this._.map(selection, 'id')
+        console.log('ids:', this.ids)
       }
     }
   }
