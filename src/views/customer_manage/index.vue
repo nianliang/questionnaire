@@ -11,7 +11,7 @@
 <template>
   <div class="customer">
     <div class="operate-area flex">
-      <div class="flex-1 f-s-22"><Icon type="md-add" /><Icon type="md-trash" /></div>
+      <div class="flex-1 f-s-22"><Icon type="md-add" class="m-r-8" /><Icon type="md-trash" /></div>
       <div>
         <AutoComplete v-model="condition.company" :data="_.map(companyList, 'company')" placeholder="请输入客户公司名称" style="width:200px" icon="md-search" :filter-method="filterCompany" @on-change="handleCompanyChange">
         </AutoComplete>
@@ -19,7 +19,7 @@
         <Input v-model="condition.contacts" placeholder="请输入联系人名称" style="width: 150px" @on-change="handleContacts" @on-blur="handleContacts"/>
       </div>
     </div>
-    <UrlTable ref="table" :url="url" :columns="columns"></UrlTable>
+    <UrlTable ref="table" :url="url" :columns="columns" :params="condition"></UrlTable>
   </div>
 </template>
 <script>

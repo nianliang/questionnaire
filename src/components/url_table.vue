@@ -49,8 +49,25 @@
         this.pageSize = pageSize
         switch (this.url) {
           case this.routeMap.customerList:
-            this.total = demoData.customer.length
-            this.data = demoData.customer.slice((page - 1) * pageSize, page * pageSize)
+            console.log(this.params)
+            let tempList = demoData.customer
+            if (this.params.company) {
+              tempList = tempList.filter(item => {
+                return item.company.includes(this.params.company)
+              })
+            }
+            if (this.params.contacts) {
+              tempList = tempList.filter(item => {
+                return item.contacts.includes(this.params.contacts)
+              })
+            }
+            if (this.params.phone) {
+              tempList = tempList.filter(item => {
+                return item.phone.includes(this.params.phone)
+              })
+            }
+            this.total = tempList.length
+            this.data = tempList.slice((page - 1) * pageSize, page * pageSize)
             this.loading = false
             break
           default:
