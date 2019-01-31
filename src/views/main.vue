@@ -66,14 +66,14 @@
     <div class="main-body">
       <Split v-model="panelPer">
         <div slot="left" class="menu">
-          <Menu theme="light" width="auto" :active-name="activeMenu">
+          <Menu ref="menu" theme="light" width="auto" :active-name="activeMenu" @on-select="handleMenuClick">
             <template v-for="(menu,key) in menuData">
               <customMenu :menu="menu" :key="key" @menu-click="handleMenuClick"></customMenu>
             </template>
           </Menu>
         </div>
         <div slot="right" class="panel">
-          <router-view></router-view>
+          <router-view @updateActive="updateActive"></router-view>
           <!--<keep-alive>-->
             <!--<router-view  v-if="$route.meta.keepAlive"></router-view>&lt;!&ndash;@updateActive="updateActive" :showBread="showBread" :maxWidth="maxWidth"&ndash;&gt;-->
           <!--</keep-alive>-->
@@ -95,11 +95,12 @@
         panelPer: 0.2,
         active: {},
         menuData: demoData.menuData,
-        activeMenu: ''
+        activeMenu: '1'
       }
     },
     methods: {
       handleMenuClick (menu) {
+        console.log('menu:', menu)
         this.activeMenu = menu
       },
       handleLoginOut (dropdownItem) {
@@ -108,6 +109,11 @@
           this.$store.commit('setUser', null)
           this.$router.push('/')
         }
+      },
+      updateActive (menuName) {
+        this.activeMenu = menuName
+        // this.$refs.menu.currentActiveName = menuName
+        this.$refs['menu'].updateActiveName()
       }
     }
   }

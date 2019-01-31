@@ -8,6 +8,9 @@
 </template>
 <script>
   export default {
+    created () {
+      this.$emit('updateActive', '5')
+    },
     data () {
       return {
 

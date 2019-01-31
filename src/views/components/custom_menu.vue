@@ -4,17 +4,17 @@
 <template>
   <div>
     <template v-if="menu.children && menu.children.length">
-      <Submenu :name="menu.id" >
+      <Submenu :name="menu.name" >
         <template slot="title">
-          <Icon type="md-paper" />{{menu.title}}
+          <Icon type="md-menu" />{{menu.title}}
         </template>
         <customMenu v-for="(item, key) in menu.children" :menu="item" :key="key" @menu-click="handleMenuClick"></customMenu>
       </Submenu>
     </template>
     <template v-else>
       <router-link :to="menu.route_link">
-      <MenuItem :name="menu.id" @on-select="handleMenuClick">
-          <Icon type="md-paper" />{{menu.title}}
+      <MenuItem :name="menu.name" @on-select="handleMenuClick">
+        <Icon type="md-document" />{{menu.title}}
       </MenuItem>
       </router-link>
     </template>
@@ -26,6 +26,7 @@
     props: ['menu'],
     methods: {
       handleMenuClick (menu) {
+        console.log('menuddd:', menu)
         this.$emit('menu-click', menu)
       }
     }

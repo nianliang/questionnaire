@@ -31,6 +31,9 @@
   import CustomerForm from './component/customer_form.vue'
   import CustomerHttp from 'server/http/customer'
   export default {
+    created () {
+      this.$emit('updateActive', '4')
+    },
     components: {
       DataTable, UrlTable, CustomerForm
     },
