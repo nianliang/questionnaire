@@ -11,6 +11,19 @@ const routes = [
     ]
   },
   {
+    path: '/organization_manage',
+    meta: {
+      title: '组织结构管理'
+    },
+    component: (resolve) => require(['@/views/main.vue'], resolve),
+    children: [
+      {
+        path: '/organization',
+        component: (resolve) => require(['@/views/organization_manage/index.vue'], resolve)
+      }
+    ]
+  },
+  {
     path: '/project_manage',
     meta: {
       title: '项目管理'

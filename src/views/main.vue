@@ -25,7 +25,7 @@
     background: @body-background;
   }
   .main-body{
-    padding: 8px;
+    /*padding: 16px;*/
     height: 500px;
     .menu{
       a{
@@ -33,7 +33,7 @@
       }
     }
     .panel{
-      padding-left: 10px;
+      margin-left: 6px;
     }
   }
   .ivu-affix{
@@ -65,14 +65,14 @@
     </Affix>
     <div class="main-body">
       <Split v-model="panelPer">
-        <div slot="left" class="menu">
+        <div slot="left" class="menu p-l-16 p-tb-16">
           <Menu ref="menu" theme="light" width="auto" :active-name="activeMenu" @on-select="handleMenuClick">
             <template v-for="(menu,key) in menuData">
-              <customMenu :menu="menu" :key="key" @menu-click="handleMenuClick"></customMenu>
+              <customMenu :menu="menu" :key="key"></customMenu>
             </template>
           </Menu>
         </div>
-        <div slot="right" class="panel">
+        <div slot="right" class="panel p-16">
           <router-view @updateActive="updateActive"></router-view>
           <!--<keep-alive>-->
             <!--<router-view  v-if="$route.meta.keepAlive"></router-view>&lt;!&ndash;@updateActive="updateActive" :showBread="showBread" :maxWidth="maxWidth"&ndash;&gt;-->
@@ -100,7 +100,6 @@
     },
     methods: {
       handleMenuClick (menu) {
-        console.log('menu:', menu)
         this.activeMenu = menu
       },
       handleLoginOut (dropdownItem) {
@@ -112,7 +111,6 @@
       },
       updateActive (menuName) {
         this.activeMenu = menuName
-        // this.$refs.menu.currentActiveName = menuName
         this.$refs['menu'].updateActiveName()
       }
     }

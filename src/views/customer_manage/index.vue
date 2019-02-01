@@ -1,6 +1,5 @@
 <style lang="less">
   .customer{
-    padding: 8px;
     .operate-area{
       .ivu-select-dropdown-list{
         max-height: 150px;

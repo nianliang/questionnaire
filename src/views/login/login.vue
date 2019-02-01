@@ -77,7 +77,7 @@
                 this.$router.push('/index')
               })
               .catch(error => {
-                console.log('登录失败：', error)
+                console.warn('登录失败：', error)
                 this.$Message.warning('登录失败:', error)
               })
           } else {

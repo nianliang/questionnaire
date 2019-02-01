@@ -8,12 +8,12 @@
         <template slot="title">
           <Icon type="md-menu" />{{menu.title}}
         </template>
-        <customMenu v-for="(item, key) in menu.children" :menu="item" :key="key" @menu-click="handleMenuClick"></customMenu>
+        <customMenu v-for="(item, key) in menu.children" :menu="item" :key="key"></customMenu>
       </Submenu>
     </template>
     <template v-else>
       <router-link :to="menu.route_link">
-      <MenuItem :name="menu.name" @on-select="handleMenuClick">
+      <MenuItem :name="menu.name">
         <Icon type="md-document" />{{menu.title}}
       </MenuItem>
       </router-link>
@@ -23,12 +23,6 @@
 <script>
   export default {
     name: 'customMenu',
-    props: ['menu'],
-    methods: {
-      handleMenuClick (menu) {
-        console.log('menuddd:', menu)
-        this.$emit('menu-click', menu)
-      }
-    }
+    props: ['menu']
   }
 </script>

@@ -21,8 +21,8 @@
   </Form>
   <div slot="footer">
     <div v-if="editable">
-      <Button type="primary" @click="handleSubmit" :loading="btnLoading">确定</Button>
       <Button @click="cancel">取消</Button>
+      <Button type="primary" @click="handleSubmit" :loading="btnLoading">确定</Button>
     </div>
   </div>
   </Modal>
@@ -60,7 +60,7 @@
         this.show = true
         this.editable = editable
         if (id) {
-          this.title = '编辑客户'
+          this.title = '修改客户'
           CustomerHttp.getDetail(id)
             .then(data => {
               this.formData = this._.cloneDeep(data)

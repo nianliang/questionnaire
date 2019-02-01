@@ -4,7 +4,7 @@ export default {
       id: 1,
       name: '1',
       title: '组织机构管理',
-      route_link: ''
+      route_link: '/organization'
     },
     {
       id: 2,
@@ -101,6 +101,72 @@ export default {
       contacts: '李广利',
       phone: '13233474068',
       pwd: ''
+    }
+  ],
+  projectType: [
+    {
+      id: 1,
+      name: '产品体检'
+    }
+  ],
+  project: [
+    {
+      id: 1,
+      name: '项目名称',
+      customerId: 1,
+      typeId: 1,
+      begin: '',
+      end: '',
+      manager: '', // 项目经理，负责人，应该关联员工id
+      trainer: '', // 培训专员，应该关联员工id，多个，用逗号分隔
+      grouper: '' // 小组长，关联员工id，多个用逗号分隔
+    }
+  ],
+  organization: [
+    {
+      id: 1,
+      name: '调研部',
+      pId: 0
+    },
+    {
+      id: 2,
+      name: '调研子部门',
+      pId: 1
+    }
+  ],
+  role: [
+    {
+      id: 1,
+      name: '系统管理员'
+    },
+    {
+      id: 2,
+      name: '质量督导员'
+    },
+    {
+      id: 3,
+      name: '问卷编辑员'
+    },
+    {
+      id: 4,
+      name: '数据分析员'
+    },
+    {
+      id: 5,
+      name: '数据回收员'
+    }
+  ],
+  staff: [
+    {
+      id: 1,
+      name: '员工1',
+      roleId: 1,
+      sex: 2,
+      phone: '13233474068',
+      groupId: 1,
+      entryTime: '20190201',
+      idNumber: '142329198601010000',
+      weChat: ''
     }
   ]
 }
