@@ -10,7 +10,7 @@ export default {
       id: 2,
       name: '2',
       title: '人员管理',
-      route_link: ''
+      route_link: '/staff'
     },
     {
       id: 3,
@@ -161,12 +161,13 @@ export default {
       id: 1,
       name: '员工1',
       roleId: 1,
-      sex: 2,
+      sex: 2, // 1男2女0未知
       phone: '13233474068',
       groupId: 1,
-      entryTime: '20190201',
+      entryDate: '20190201',
       idNumber: '142329198601010000',
-      weChat: ''
+      weChat: '',
+      city: ''
     }
   ]
 }

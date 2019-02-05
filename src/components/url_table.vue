@@ -69,6 +69,34 @@
             this.data = tempList.slice((page - 1) * pageSize, page * pageSize)
             this.loading = false
             break
+          case this.routeMap.staffList:
+            let staffList = demoData.staff
+            if (this.params) {
+              if (this.params.name) {
+                staffList = staffList.filter(item => {
+                  return item.name.includes(this.params.name)
+                })
+              }
+              if (this.params.phone) {
+                staffList = staffList.filter(item => {
+                  return item.phone.includes(this.params.phone)
+                })
+              }
+              if (this.params.startDate) {
+                staffList = staffList.filter(item => {
+                  return item.entryDate >= this.params.startDate
+                })
+              }
+              if (this.params.endDate) {
+                staffList = staffList.filter(item => {
+                  return item.entryDate <= this.params.endDate
+                })
+              }
+            }
+            this.total = staffList.length
+            this.data = staffList.slice((page - 1) * pageSize, page * pageSize)
+            this.loading = false
+            break
           default:
             break
         }
