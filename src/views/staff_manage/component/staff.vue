@@ -8,7 +8,7 @@
       <div>
         <Input v-model="condition.name" placeholder="请输入联系人名称" style="width: 150px" @on-change="handleName" @on-blur="handleName"/>
         <Input v-model="condition.phone" placeholder="请输入联系人电话" class="m-l-8 m-r-8" style="width: 150px" @on-change="handlePhone" @on-blur="handlePhone"/>
-        <DatePicker v-model="condition.entryDate" type="daterange" placement="bottom-end" placeholder="选择入职时间" style="width: 150px"  @on-change="handleEntry" format="yyyy-MM-dd"></DatePicker>
+        <DatePicker v-model="condition.entryDate" type="daterange" placement="bottom-end" placeholder="选择入职时间" style="width: 150px"  @on-change="handleEntry" format="yyyy-MM-dd" class="m-r-8"></DatePicker>
         <AutoComplete v-model="condition.role" placeholder="请输入角色名称" style="width:150px" icon="md-search" :filter-method="filterRole" @on-search="handleRoleSearch" @on-change="handleRoleChange">
           <Option v-for="item in roleList" :value="item.name" :key="item.id">{{ item.name }}</Option>
         </AutoComplete>
