@@ -3,8 +3,8 @@
 <template>
   <Modal v-model="show" :title="title" @on-cancel="cancel">
   <Form :model="formData" ref="formData" :label-width="120" :rules="formRule">
-  <FormItem label="公司名称:" prop="company">
-  <Input v-model="formData.company" placeholder="请输入客户公司名称"></Input>
+  <FormItem label="公司名称:" prop="name">
+  <Input v-model="formData.name" placeholder="请输入客户公司名称"></Input>
   </FormItem>
   <FormItem label="客户部门:" prop="department">
   <Input v-model="formData.department" placeholder="请输入客户部门"></Input>
@@ -37,7 +37,7 @@
         show: false,
         formData: {
           id: 0,
-          company: '',
+          name: '',
           department: '',
           contacts: '',
           phone: '',
@@ -46,7 +46,7 @@
         btnLoading: false,
         editable: true,
         formRule: {
-          company: [{required: true, message: '请输入', trigger: 'blur'}],
+          name: [{required: true, message: '请输入', trigger: 'blur'}],
           contacts: [{required: true, message: '请输入', trigger: 'blur'}],
           phone: [
             {required: true, message: '请输入', trigger: 'blur'},

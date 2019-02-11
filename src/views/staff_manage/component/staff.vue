@@ -32,7 +32,7 @@
         condition: {
           name: '',
           phone: '',
-          startDate: '',
+          beginDate: '',
           endDate: '',
           role: ''
         },
@@ -164,7 +164,7 @@
         this.getList()
       },
       handleEntry (date) {
-        this.condition.startDate = date[0]
+        this.condition.beginDate = date[0]
         this.condition.endDate = date[1]
         this.getList()
       },

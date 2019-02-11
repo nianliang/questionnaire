@@ -13,7 +13,7 @@
       <!--<div class="flex-1 f-s-22"><Icon type="md-add" class="m-r-8" @click="add"/><Icon type="md-trash" /></div>-->
       <div class="flex-1 f-s-22"><Button type="primary" @click="openForm()" class="m-r-8" icon="md-add">新增</Button><Button @click="del(ids)">批量删除</Button></div>
       <div>
-        <AutoComplete v-model="condition.company" :data="companyList" placeholder="请输入客户公司名称" style="width:200px" icon="md-search" :filter-method="filterCompany" @on-change="handleCompanyChange">
+        <AutoComplete v-model="condition.name" :data="companyList" placeholder="请输入客户公司名称" style="width:200px" icon="md-search" :filter-method="filterCompany" @on-change="handleCompanyChange">
         </AutoComplete>
         <Input v-model="condition.phone" placeholder="请输入联系人电话" class="m-l-8 m-r-8" style="width: 150px" @on-change="handlePhone" @on-blur="handlePhone"/>
         <Input v-model="condition.contacts" placeholder="请输入联系人名称" style="width: 150px" @on-change="handleContacts" @on-blur="handleContacts"/>
@@ -40,7 +40,7 @@
       return {
         url: this.routeMap.customerList,
         condition: {
-          company: '',
+          name: '',
           contacts: '',
           phone: ''
         },
@@ -62,7 +62,7 @@
           },
           {
             title: '公司名称',
-            key: 'company',
+            key: 'name',
             minWidth: 120,
             tooltip: true
           },
@@ -130,14 +130,14 @@
         for (let i = 0; i < 22; i++) {
           demoData.customer.push({
             id: 10 + i,
-            company: '百度' + i,
+            name: '百度' + i,
             department: '',
             contacts: '李广利',
             phone: '13233474068',
             pwd: ''
           })
         }
-        this.companyList = this._.map(demoData.customer, 'company')
+        this.companyList = this._.map(demoData.customer, 'name')
         this.$refs['table'].list()
       }, 2000)
     },
@@ -146,7 +146,7 @@
         return option.indexOf(value) !== -1
       },
       handleCompanyChange (value) {
-        this.condition.company = value
+        this.condition.name = value
         this.getList()
       },
       handlePhone () {

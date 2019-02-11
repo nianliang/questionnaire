@@ -74,7 +74,7 @@
         },
         formRule: {
           name: [
-            {required: true, message: '请输入', trigger: 'blur'}
+            {required: true, message: '请输入人员姓名', trigger: 'blur'}
           ],
           phone: [
             {type: 'string', message: '手机号不合法', pattern: Pattern.phone, trigger: 'blur'}

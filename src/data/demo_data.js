@@ -96,7 +96,7 @@ export default {
   customer: [
     {
       id: 1,
-      company: '百度',
+      name: '百度',
       department: '',
       contacts: '李广利',
       phone: '13233474068',
@@ -115,11 +115,14 @@ export default {
       name: '项目名称',
       customerId: 1,
       typeId: 1,
-      begin: '',
-      end: '',
+      begin: '', // 立项时间
+      end: '', // 截止时间
+      contacts: '', // 联系人
       manager: '', // 项目经理，负责人，应该关联员工id
       trainer: '', // 培训专员，应该关联员工id，多个，用逗号分隔
-      grouper: '' // 小组长，关联员工id，多个用逗号分隔
+      groupLeader: '', // 小组长，关联员工id，多个用逗号分隔
+      sampleSize: '20', // 样本量
+      phase: '问卷调研' // 项目阶段
     }
   ],
   organization: [

@@ -1,8 +1,10 @@
 import COMMON from './common.js'
 import CUSTOMER from './customer'
 import STAFF from './staff'
+import PROJECT from './project'
 export default Object.assign(
   COMMON,
   CUSTOMER,
-  STAFF
+  STAFF,
+  PROJECT
 )

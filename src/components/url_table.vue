@@ -49,58 +49,13 @@
         this.pageSize = pageSize
         switch (this.url) {
           case this.routeMap.customerList:
-            let tempList = demoData.customer
-            if (this.params.company) {
-              tempList = tempList.filter(item => {
-                return item.company.includes(this.params.company)
-              })
-            }
-            if (this.params.contacts) {
-              tempList = tempList.filter(item => {
-                return item.contacts.includes(this.params.contacts)
-              })
-            }
-            if (this.params.phone) {
-              tempList = tempList.filter(item => {
-                return item.phone.includes(this.params.phone)
-              })
-            }
-            this.total = tempList.length
-            this.data = tempList.slice((page - 1) * pageSize, page * pageSize)
-            this.loading = false
+            this.getCustomerList(page, pageSize)
             break
           case this.routeMap.staffList:
-            let staffList = demoData.staff
-            if (this.params) {
-              if (this.params.name) {
-                staffList = staffList.filter(item => {
-                  return item.name.includes(this.params.name)
-                })
-              }
-              if (this.params.phone) {
-                staffList = staffList.filter(item => {
-                  return item.phone.includes(this.params.phone)
-                })
-              }
-              if (this.params.startDate) {
-                staffList = staffList.filter(item => {
-                  return item.entryDate >= this.params.startDate
-                })
-              }
-              if (this.params.endDate) {
-                staffList = staffList.filter(item => {
-                  return item.entryDate <= this.params.endDate
-                })
-              }
-              if (this.params.role) {
-                staffList = staffList.filter(item => {
-                  return item.roleId.indexOf(this.params.role) !== -1
-                })
-              }
-            }
-            this.total = staffList.length
-            this.data = staffList.slice((page - 1) * pageSize, page * pageSize)
-            this.loading = false
+            this.getStaffList(page, pageSize)
+            break
+          case this.routeMap.projectList:
+            this.getProjectList(page, pageSize)
             break
           default:
             break
@@ -129,6 +84,102 @@
       },
       handleSelectChange (selection) {
         this.$emit('on-selection-change', selection)
+      },
+
+      /**
+       *下列为模拟数据方法，正式时需删除
+       * */
+      getCustomerList (page, pageSize) {
+        let tempList = demoData.customer
+        if (this.params.name) {
+          tempList = tempList.filter(item => {
+            return item.name.includes(this.params.name)
+          })
+        }
+        if (this.params.contacts) {
+          tempList = tempList.filter(item => {
+            return item.contacts.includes(this.params.contacts)
+          })
+        }
+        if (this.params.phone) {
+          tempList = tempList.filter(item => {
+            return item.phone.includes(this.params.phone)
+          })
+        }
+        this.total = tempList.length
+        this.data = tempList.slice((page - 1) * pageSize, page * pageSize)
+        this.loading = false
+      },
+      getStaffList (page, pageSize) {
+        let staffList = demoData.staff
+        if (this.params) {
+          if (this.params.name) {
+            staffList = staffList.filter(item => {
+              return item.name.includes(this.params.name)
+            })
+          }
+          if (this.params.phone) {
+            staffList = staffList.filter(item => {
+              return item.phone.includes(this.params.phone)
+            })
+          }
+          if (this.params.beginDate) {
+            staffList = staffList.filter(item => {
+              return item.entryDate >= this.params.beginDate
+            })
+          }
+          if (this.params.endDate) {
+            staffList = staffList.filter(item => {
+              return item.entryDate <= this.params.endDate
+            })
+          }
+          if (this.params.role) {
+            staffList = staffList.filter(item => {
+              return item.roleId.indexOf(this.params.role) !== -1
+            })
+          }
+        }
+        this.total = staffList.length
+        this.data = staffList.slice((page - 1) * pageSize, page * pageSize)
+        this.loading = false
+      },
+      getProjectList (page, pageSize) {
+        let list = demoData.project
+        if (this.params) {
+          if (this.params.name) {
+            list = list.filter(item => {
+              return item.name.includes(this.params.name)
+            })
+          }
+          if (this.params.typeId) {
+            list = list.filter(item => {
+              return item.typeId.includes(this.params.typeId)
+            })
+          }
+          if (this.params.manager) {
+            list = list.filter(item => {
+              return item.manager.includes(this.params.manager)
+            })
+          }
+          if (this.params.customerId) {
+            list = list.filter(item => {
+              return item.customerId.includes(this.params.customerId)
+            })
+          }
+          if (this.params.begin) {
+            list = list.filter(item => {
+              return item.begin >= this.params.begin
+            })
+          }
+          if (this.params.end) {
+            list = list.filter(item => {
+              return item.begin <= this.params.end
+            })
+          }
+        }
+        this.total = list.length
+        this.data = list.slice((page - 1) * pageSize, page * pageSize)
+        this.loading = false
       }
     }
   }
