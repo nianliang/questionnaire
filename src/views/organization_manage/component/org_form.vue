@@ -50,6 +50,9 @@
             .catch(error => {
               console.warn('OrgHttp.getDetail:', error)
             })
+        } else {
+          this.formData = this._.cloneDeep(this.formData) // todo 正式场景时需注释掉
+          this.formData.id = ''
         }
       },
       handleSubmit () {

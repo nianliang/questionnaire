@@ -160,11 +160,11 @@ export default {
     {
       id: 1,
       name: '员工1',
-      roleId: 1,
-      sex: 2, // 1男2女0未知
+      roleId: '系统管理员',
+      sex: '女', // 1男2女0未知
       phone: '13233474068',
       groupId: 1,
-      entryDate: '20190201',
+      entryDate: '2019-02-01',
       idNumber: '142329198601010000',
       weChat: '',
       city: ''

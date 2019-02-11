@@ -25,6 +25,9 @@
 
       }
     },
+    created () {
+      this.$emit('updateActive', '2')
+    },
     mounted () {
 
     },

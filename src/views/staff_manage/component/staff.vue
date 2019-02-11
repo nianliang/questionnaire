@@ -17,6 +17,7 @@
 </template>
 <script>
   import StaffForm from './staff_form.vue'
+  import StaffHttp from 'server/http/staff'
   export default {
     components: {
       StaffForm
@@ -61,12 +62,6 @@
             title: '性别',
             key: 'sex',
             minWidth: 60,
-            tooltip: true
-          },
-          {
-            title: '联系人电话',
-            key: 'phone',
-            minWidth: 100,
             tooltip: true
           },
           {
@@ -135,7 +130,15 @@
         this.$refs['StaffForm'].open(id, editable)
       },
       del (ids) {
-
+        StaffHttp.del(ids)
+          .then(data => {
+            this.$Message.success('删除成功！')
+            this.$refs['table'].list()
+          })
+          .catch(error => {
+            this.$Message.warning('删除失败！')
+            console.warn('删除客户失败：', error)
+          })
       },
       handleSelectChange (selection) {
         this.ids = this._.map(selection, 'id')
