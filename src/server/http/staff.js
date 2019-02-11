@@ -30,7 +30,7 @@ class Staff extends ServiceHttp {
       }
     })
   }
-  /*
+  /**
   * 获取指定id的人员信息
   * */
   getDetail (id) {
@@ -45,7 +45,8 @@ class Staff extends ServiceHttp {
       }
     })
   }
-  /*
+
+  /**
   * 要删除的数据的id集合
   * */
   del (ids) {
@@ -61,6 +62,15 @@ class Staff extends ServiceHttp {
       } catch (error) {
         reject(error)
       }
+    })
+  }
+
+  /**
+   * 获取角色列表
+   * */
+  getRoleList () {
+    return new Promise((resolve, reject) => {
+      resolve(_.cloneDeep(demoData.role))
     })
   }
 }

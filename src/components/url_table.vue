@@ -92,6 +92,11 @@
                   return item.entryDate <= this.params.endDate
                 })
               }
+              if (this.params.role) {
+                staffList = staffList.filter(item => {
+                  return item.roleId.indexOf(this.params.role) !== -1
+                })
+              }
             }
             this.total = staffList.length
             this.data = staffList.slice((page - 1) * pageSize, page * pageSize)

@@ -9,15 +9,15 @@ export default {
     {
       id: 2,
       name: '2',
-      title: '人员管理',
+      title: '人员权限',
       route_link: '/staff'
     },
-    {
-      id: 3,
-      name: '3',
-      title: '员工管理',
-      route_link: ''
-    },
+    // {
+    //   id: 3,
+    //   name: '3',
+    //   title: '员工管理',
+    //   route_link: ''
+    // },
     {
       id: 15,
       name: '4',
