@@ -12,6 +12,9 @@
           <Option v-for="item in customerList" :value="item.name" :key="item.id">{{ item.name }}</Option>
         </AutoComplete>
       </FormItem>
+      <FormItem label="联系人:" prop="contacts">
+        <Input v-model="formData.contacts" placeholder="请输入联系人" :disabled="disabled"></Input>
+      </FormItem>
       <FormItem label="项目类型:" prop="typeId">
         <AutoComplete v-model="formData.typeId" placeholder="请选择项目类型" icon="md-search" @on-change="handleTypeChange" @on-search="handleTypeSearch" @on-blur="handleTypeBlur" :disabled="disabled">
           <Option v-for="item in typeList" :value="item.name" :key="item.id">{{ item.name }}</Option>
@@ -57,7 +60,9 @@
         disabled: false,
         formData: {
           id: '',
+          typeId: '',
           customerId: '',
+          contacts: '', // 联系人
           begin: '',
           end: ''
         },
