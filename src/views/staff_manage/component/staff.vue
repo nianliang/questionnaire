@@ -14,7 +14,7 @@
         </AutoComplete>
     </div>
     </div>
-    <UrlTable ref="table" :url="url" :columns="columns" :params="condition" @on-selection-change="handleSelectChange"></UrlTable>
+    <UrlTable ref="table" :url="url" :columns="columns" :params="condition" @on-selection-change="handleSelectChange" ></UrlTable>
     <StaffForm ref="StaffForm" @success="getList"></StaffForm>
   </div>
 </template>

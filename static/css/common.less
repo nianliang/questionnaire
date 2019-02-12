@@ -111,6 +111,21 @@
 .flex {
   display: flex!important;
 }
+.flexN(@value) {
+  @num:unit(@value);
+  .flex-@{num}{
+    flex: @value !important;
+  }
+}
+.flexN(1);
+.flexN(2);
+.flexN(3);
+.flexN(4);
+.flexN(5);
+.flexN(6);
+.flexN(7);
+.flexN(8);
+.flexN(9);
 .flex-inline {
   display: inline-flex;
 }
@@ -120,21 +135,6 @@
 .flex-col{
   display: flex;
   flex-direction: column;
-}
-.flex-1{
-  flex: 1;
-}
-.flex-2{
-  flex: 2;
-}
-.flex-3{
-  flex: 3;
-}
-.flex-4{
-  flex: 4;
-}
-.flex-5{
-  flex: 5;
 }
 .flex-v-center{
   align-items: center;

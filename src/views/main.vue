@@ -21,19 +21,29 @@
       }
     }
   }
-  .ivu-affix{
+ /* .ivu-affix{
     background: @body-background;
-  }
+  }*/
   .main-body{
     /*padding: 16px;*/
-    height: 500px;
+    /*height: 500px;*/
+    .ivu-menu-light{
+      background-color: inherit;
+    }
+    .panel{
+      margin-left: 6px;
+      .layout-copy{
+        line-height: 17px;
+        text-align: center;
+        margin: 16px 0 0 0;
+        color: #9ea7b4;
+        background-color: inherit;
+      }
+    }
     .menu{
       a{
         color: inherit; // 屏蔽route的a标签颜色
       }
-    }
-    .panel{
-      margin-left: 6px;
     }
   }
   .ivu-affix{
@@ -65,7 +75,7 @@
     </Affix>
     <div class="main-body">
       <Split v-model="panelPer">
-        <div slot="left" class="menu p-l-16 p-tb-16">
+        <div slot="left" class="menu p-tb-16">
           <Menu ref="menu" theme="light" width="auto" :active-name="activeMenu" @on-select="handleMenuClick">
             <template v-for="(menu,key) in menuData">
               <customMenu :menu="menu" :key="key"></customMenu>
@@ -78,6 +88,9 @@
             <!--<router-view  v-if="$route.meta.keepAlive"></router-view>&lt;!&ndash;@updateActive="updateActive" :showBread="showBread" :maxWidth="maxWidth"&ndash;&gt;-->
           <!--</keep-alive>-->
           <!--<router-view  v-if="!$route.meta.keepAlive"></router-view>-->
+          <div class="layout-copy">
+            hifmcloud.com © 2017-2019 文思海辉技术有限公司版权所有 <a target="_blank" href="http://www.miitbeian.gov.cn">京ICP备17009400号-6</a>
+          </div>
         </div>
       </Split>
     </div>

@@ -3,7 +3,14 @@
 </style>
 <template>
   <div>
-    <div id="treeDemo" class="ztree"></div>
+    <div class="flex">
+      <div class="flex-2" style="overflow: auto">
+        <div id="treeDemo" class="ztree"></div>
+      </div>
+      <div class="flex-8" style="overflow: hidden">
+        <Staff></Staff>
+      </div>
+    </div>
     <OrgForm ref="orgForm" @success="initTree"></OrgForm>
   </div>
 </template>
@@ -11,14 +18,57 @@
   import ztree from '@/mixins/ztree'
   import OrgHttp from 'server/http/organization'
   import OrgForm from './component/org_form.vue'
+  import Staff from '../staff_manage/component/staff.vue'
   export default {
     mixins: [ ztree ],
-    components: {OrgForm},
+    components: {OrgForm, Staff},
     created () {
       this.$emit('updateActive', '1')
     },
     data () {
       return {
+        url: this.routeMap.staffList,
+        columns: [
+          {
+            title: '编号',
+            key: 'id',
+            width: 60,
+            tooltip: true
+          },
+          {
+            title: '姓名',
+            key: 'name',
+            minWidth: 100,
+            tooltip: true
+          },
+          {
+            title: '电话',
+            key: 'phone',
+            minWidth: 100,
+            tooltip: true
+          },
+          {
+            title: '性别',
+            key: 'sex',
+            minWidth: 60,
+            tooltip: true
+          },
+          {
+            title: '角色',
+            key: 'roleId',
+            minWidth: 100,
+            tooltip: true
+          },
+          {
+            title: '入职时间',
+            key: 'entryDate',
+            minWidth: 100,
+            tooltip: true
+          }
+        ],
+        condition: {
+
+        },
         zTreeObj: null,
         setting: {
           treeId: 'org',
