@@ -17,7 +17,8 @@ module.exports = {
   ],
   // required to lint *.vue files
   plugins: [
-    'vue'
+    // 'vue',
+    'html'
   ],
   // add your custom rules here
   rules: {
@@ -28,15 +29,15 @@ module.exports = {
     "vue/no-parsing-error": [2, { "x-invalid-end-tag": false }],
     "eqeqeq": 0, // 2必须使用全等，0可使用==
     'indent': 'off',
-    'vue/script-indent': [
-      'error',
-      2,
-      {
-        'baseIndent': 1,
-        'switchCase': 1, // 此处解决switch与case同缩进的问题
-        "ignores": []
-      }
-    ],
+    // 'vue/script-indent': [
+    //   'error',
+    //   2,
+    //   {
+    //     'baseIndent': 1,
+    //     'switchCase': 1, // 此处解决switch与case同缩进的问题
+    //     "ignores": []
+    //   }
+    // ], // vue规范时解决script标签中export default缩进问题
     'spaced-comment': 0,
     'no-mixed-operators': 0 // 同样优先级的运算符加括号的配置关闭
   }
