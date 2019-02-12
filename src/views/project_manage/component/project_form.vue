@@ -26,6 +26,24 @@
       <FormItem label="截止日期:" prop="end">
         <DatePicker v-model="formData.end" format="yyyy-MM-dd" type="date" placeholder="请选择截止日期" @on-change="handleDate(arguments, 1)" :disabled="disabled" style="width:100%"></DatePicker>
       </FormItem>
+      <div class="text-center" v-show="!disabled"><a @click="handleAddMember">{{memberFlag?'取消项目成员':'添加项目成员'}}</a></div>
+      <div v-if="memberFlag">
+        <FormItem label="项目经理:" prop="manager">
+          <Select v-model="formData.manager" :disabled="disabled">
+            <Option v-for="item in managerData" :value="item.name" :key="item.id">{{ item.name }}</Option>
+          </Select>
+        </FormItem>
+        <FormItem label="培训专员:" prop="trainer">
+          <Select v-model="formData.trainer" multiple :disabled="disabled">
+            <Option v-for="item in managerData" :value="item.name" :key="item.id">{{ item.name }}</Option>
+          </Select>
+        </FormItem>
+        <FormItem label="小组长:" prop="groupLeader">
+          <Select v-model="formData.groupLeader" multiple :disabled="disabled">
+            <Option v-for="item in managerData" :value="item.name" :key="item.id">{{ item.name }}</Option>
+          </Select>
+        </FormItem>
+      </div>
     </Form>
     <div slot="footer">
       <div v-if="!disabled">
@@ -60,11 +78,15 @@
         disabled: false,
         formData: {
           id: '',
+          name: '',
           typeId: '',
           customerId: '',
           contacts: '', // 联系人
           begin: '',
-          end: ''
+          end: '',
+          manager: '',
+          trainer: '',
+          groupLeader: ''
         },
         formRule: {
           name: [
@@ -73,7 +95,8 @@
         },
         btnLoading: false,
         customerList: [],
-        typeList: []
+        typeList: [],
+        memberFlag: false // 添加项目成员标识，默认待添加，true时为取消添加
       }
     },
     methods: {
@@ -96,6 +119,11 @@
         }
         this.customerList = this._.cloneDeep(this.customerData)
         this.typeList = this._.cloneDeep(this.typeData)
+        if (this.formData.id && this.formData.manager) {
+          this.memberFlag = true
+        } else {
+          return false // 新增时默认待添加
+        }
       },
       handleSubmit () {
         if (this.formData.begin.constructor.name === 'Date') {
@@ -179,9 +207,21 @@
           this.formData.begin = this._.cloneDeep(arg[0])
         }
       },
+      handleAddMember () {
+        this.memberFlag = !this.memberFlag
+      },
       cancel () {
         this.show = false
         this.$refs['formData'].resetFields()
+      }
+    },
+    watch: {
+      memberFlag: function (value) {
+        if (!value) {
+          this.formData.manager = ''
+          this.formData.trainer = ''
+          this.formData.groupLeader = ''
+        }
       }
     }
   }

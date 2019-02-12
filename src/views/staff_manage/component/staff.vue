@@ -4,7 +4,7 @@
 <template>
   <div class="staff">
     <div class="operate-area flex">
-      <div class="flex-1 f-s-22"><Button type="primary" @click="openForm()" class="m-r-8" icon="md-add">新增</Button><Button @click="del(ids)">批量删除</Button></div>
+      <div class="flex-1"><Button type="primary" @click="openForm()" class="m-r-8" icon="md-add">新增</Button><Button @click="del(ids)">批量删除</Button></div>
       <div>
         <Input v-model="condition.name" placeholder="请输入联系人名称" style="width: 150px" @on-change="handleName" @on-blur="handleName"/>
         <Input v-model="condition.phone" placeholder="请输入联系人电话" class="m-l-8 m-r-8" style="width: 150px" @on-change="handlePhone" @on-blur="handlePhone"/>

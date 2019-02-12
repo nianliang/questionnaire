@@ -90,5 +90,31 @@ class Project extends ServiceHttp {
       resolve(_.cloneDeep(demoData.customer))
     })
   }
+
+  /**
+   * 为项目添加成员
+   * */
+  saveProjectMember (id, data) {
+    return new Promise((resolve, reject) => {
+      if (!id) {
+        reject(new Error('不能为空项目添加成员'))
+      }
+      try {
+        let temp = demoData.project.find(item => {
+          return item.id == id
+        })
+        if (temp) {
+          temp.manager = data.manager
+          temp.trainer = data.trainer
+          temp.groupLeader = data.groupLeader
+          resolve()
+        } else {
+          reject(new Error('所选择的项目不存在'))
+        }
+      } catch (error) {
+        reject(error)
+      }
+    })
+  }
 }
 export default new Project()

@@ -4,32 +4,33 @@
 <template>
   <div class="project">
     <div class="flex">
-      <!--<div class="flex-1 f-s-22"><Icon type="md-add" class="m-r-8" @click="add"/><Icon type="md-trash" /></div>-->
-      <div class="flex-1 f-s-22"><Button type="primary" @click="openForm()" class="m-r-8" icon="md-add">新增</Button><Button @click="del(ids)">批量删除</Button></div>
+      <div class="flex-1"><Button type="primary" @click="openForm()" class="m-r-8" icon="md-add">新增</Button><Button @click="del(ids)" class="m-r-8">批量删除</Button><Button @click="handleAddMembers" :disabled="btnMemberDisabled">{{btnMemberText}}项目成员</Button></div>
       <div>
-        <Input v-model="condition.name" placeholder="请输入项目名称" class="m-r-8" style="width: 150px" @on-change="handleSearch" @on-blur="handleSearch"/>
-        <AutoComplete v-model="condition.typeId" placeholder="请输入项目类型" style="width:150px" icon="md-search" @on-change="handleTypeChange" @on-search="handleTypeSearch" class="m-r-8">
+        <Input v-model="condition.name" placeholder="请输入项目名称" class="m-r-8" style="width: 130px" @on-change="handleSearch" @on-blur="handleSearch"/>
+        <AutoComplete v-model="condition.typeId" placeholder="请输入项目类型" style="width:130px" icon="md-search" @on-change="handleTypeChange" @on-search="handleTypeSearch" class="m-r-8">
           <Option v-for="item in typeList" :value="item.name" :key="item.id">{{ item.name }}</Option>
         </AutoComplete>
-        <AutoComplete v-model="condition.manager" placeholder="请输入项目负责人" style="width:150px" icon="md-search" @on-change="handleManagerChange" @on-search="handleManagerSearch" class="m-r-8">
+        <AutoComplete v-model="condition.manager" placeholder="请输入项目负责人" style="width:130px" icon="md-search" @on-change="handleManagerChange" @on-search="handleManagerSearch" class="m-r-8">
           <Option v-for="item in managerList" :value="item.name" :key="item.id">{{ item.name }}</Option>
         </AutoComplete>
-        <AutoComplete v-model="condition.customerId" :data="[]" placeholder="请输入客户名称" style="width:150px" icon="md-search" @on-change="handleCustomerChange" @on-search="handleCustomerSearch" class="m-r-8">
+        <AutoComplete v-model="condition.customerId" :data="[]" placeholder="请输入客户名称" style="width:130px" icon="md-search" @on-change="handleCustomerChange" @on-search="handleCustomerSearch" class="m-r-8">
           <Option v-for="item in customerList" :value="item.name" :key="item.id">{{ item.name }}</Option>
         </AutoComplete>
-        <DatePicker v-model="projectDateRange" type="daterange" placement="bottom-end" placeholder="请输入立项时间" @on-change="handleDateRange" style="width: 150px"></DatePicker>
+        <DatePicker v-model="projectDateRange" type="daterange" placement="bottom-end" placeholder="请输入立项时间" @on-change="handleDateRange" style="width: 180px"></DatePicker>
       </div>
     </div>
     <UrlTable ref="table" :url="url" :columns="columns" :params="condition" @on-selection-change="handleSelectChange"></UrlTable>
     <ProjectForm ref="ProjectForm" @success="getList" :managerData="managerData" :typeData="typeData" :customerData="customerData"></ProjectForm>
+    <ProjectMemberForm ref="ProjectMemberForm" :staffList="managerData"></ProjectMemberForm>
   </div>
 </template>
 <script>
   import ProjectForm from './component/project_form.vue'
   import ProjectHttp from 'server/http/project'
+  import ProjectMemberForm from './component/project_member_form.vue'
   export default {
     components: {
-      ProjectForm
+      ProjectForm, ProjectMemberForm
     },
     created () {
       this.$emit('updateActive', '5')
@@ -151,13 +152,16 @@
         },
         projectDateRange: [], // 项目立项时间，查询条件
         ids: '',
+        idObjs: [], // 复选框选中项的对象集合
         typeData: [],
         typeList: [], // 项目类型
         managerData: [],
         managerList: [], // 项目负责人
         customerData: [],
         customerList: [], // 客户列表
-        timer: null
+        timer: null,
+        btnMemberText: '添加',
+        btnMemberDisabled: true
       }
     },
     mounted () {
@@ -253,6 +257,17 @@
       },
       handleSelectChange (selection) {
         this.ids = this._.map(selection, 'id')
+        this.idObjs = selection
+        if (selection.length === 1) {
+          if (selection[0].manager) {
+            this.btnMemberText = '修改'
+          } else {
+            this.btnMemberText = '添加'
+          }
+          this.btnMemberDisabled = false
+        } else {
+          this.btnMemberDisabled = true
+        }
       },
       del (ids) {
         ProjectHttp.del(ids)
@@ -264,6 +279,12 @@
             this.$Message.warning('删除失败！')
             console.warn('删除客户失败：', error)
           })
+      },
+      handleAddMembers () {
+        if (this.ids.length > 1 || !this.ids.length) {
+          this.$Message.warning('请选择一个项目，为该项目添加成员')
+        }
+        this.$refs['ProjectMemberForm'].open(this._.cloneDeep(this.idObjs[0]))
       }
     }
   }

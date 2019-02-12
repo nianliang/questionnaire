@@ -10,8 +10,7 @@
 <template>
   <div class="customer">
     <div class="operate-area flex">
-      <!--<div class="flex-1 f-s-22"><Icon type="md-add" class="m-r-8" @click="add"/><Icon type="md-trash" /></div>-->
-      <div class="flex-1 f-s-22"><Button type="primary" @click="openForm()" class="m-r-8" icon="md-add">新增</Button><Button @click="del(ids)">批量删除</Button></div>
+      <div class="flex-1"><Button type="primary" @click="openForm()" class="m-r-8" icon="md-add">新增</Button><Button @click="del(ids)">批量删除</Button></div>
       <div>
         <AutoComplete v-model="condition.name" :data="companyList" placeholder="请输入客户公司名称" style="width:200px" icon="md-search" :filter-method="filterCompany" @on-change="handleCompanyChange">
         </AutoComplete>
