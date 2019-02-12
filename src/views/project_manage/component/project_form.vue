@@ -8,17 +8,23 @@
         <Input v-model="formData.name" placeholder="请输入项目名称" :disabled="disabled"></Input>
       </FormItem>
       <FormItem label="客户名称:" prop="customerId">
-        <AutoComplete v-model="formData.customerId" placeholder="请选择客户名称" icon="md-search" @on-change="handleCustomerChange" @on-search="handleCustomerSearch" @on-blur="handleCustomerBlur" :disabled="disabled">
+        <Select v-model="formData.customerId" filterable>
           <Option v-for="item in customerList" :value="item.name" :key="item.id">{{ item.name }}</Option>
-        </AutoComplete>
+        </Select>
+        <!--<AutoComplete v-model="formData.customerId" placeholder="请选择客户名称" icon="md-search" @on-change="handleCustomerChange" @on-search="handleCustomerSearch" @on-blur="handleCustomerBlur" :disabled="disabled">-->
+          <!--<Option v-for="item in customerList" :value="item.name" :key="item.id">{{ item.name }}</Option>-->
+        <!--</AutoComplete>-->
       </FormItem>
       <FormItem label="联系人:" prop="contacts">
         <Input v-model="formData.contacts" placeholder="请输入联系人" :disabled="disabled"></Input>
       </FormItem>
       <FormItem label="项目类型:" prop="typeId">
-        <AutoComplete v-model="formData.typeId" placeholder="请选择项目类型" icon="md-search" @on-change="handleTypeChange" @on-search="handleTypeSearch" @on-blur="handleTypeBlur" :disabled="disabled">
+        <Select v-model="formData.typeId" filterable>
           <Option v-for="item in typeList" :value="item.name" :key="item.id">{{ item.name }}</Option>
-        </AutoComplete>
+        </Select>
+        <!--<AutoComplete v-model="formData.typeId" placeholder="请选择项目类型" icon="md-search" @on-change="handleTypeChange" @on-search="handleTypeSearch" @on-blur="handleTypeBlur" :disabled="disabled">-->
+          <!--<Option v-for="item in typeList" :value="item.name" :key="item.id">{{ item.name }}</Option>-->
+        <!--</AutoComplete>-->
       </FormItem>
       <FormItem label="立项日期:" prop="begin">
         <DatePicker v-model="formData.begin" format="yyyy-MM-dd" type="date" placeholder="请选择立项日期" @on-change="handleDate(arguments, 0)" :disabled="disabled" style="width:100%"></DatePicker>
@@ -152,7 +158,7 @@
           }
         })
       },
-      handleCustomerSearch (value) {
+      /* handleCustomerSearch (value) {
         this.customerList = this.customerData.filter(item => {
           return item.name.indexOf(value) !== -1
         })
@@ -197,7 +203,7 @@
             this.formData.typeId = ''
           }
         }
-      },
+      }, */
       handleDate (arg, type) {
         if (type) {
           // 截止时间
