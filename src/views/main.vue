@@ -25,6 +25,8 @@
     background: @body-background;
   }*/
   .main-body{
+    /*max-height: 700px;*/
+    /*overflow-y: auto;*/
     /*padding: 16px;*/
     /*height: 500px;*/
     .ivu-menu-light{

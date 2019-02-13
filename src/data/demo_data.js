@@ -39,19 +39,19 @@ export default {
           id: 6,
           name: '6-1',
           title: '编辑问卷',
-          route_link: ''
+          route_link: '/questionnaire'
         },
         {
           id: 7,
           name: '6-2',
           title: '发布问卷',
-          route_link: ''
+          route_link: '/questionnaire/publish'
         },
         {
           id: 8,
           name: '6-3',
           title: '答卷可视化监测',
-          route_link: ''
+          route_link: '/questionnaire/monitor'
         }
       ]
     },
@@ -96,7 +96,7 @@ export default {
   customer: [
     {
       id: 1,
-      name: '百度',
+      name: '百度客户',
       department: '',
       contacts: '李广利',
       phone: '13233474068',
@@ -112,8 +112,8 @@ export default {
   project: [
     {
       id: 1,
-      name: '项目名称',
-      customerId: 1,
+      name: '百度feed流产品体验',
+      customerId: '百度客户',
       typeId: 1,
       begin: '', // 立项时间
       end: '', // 截止时间
@@ -172,5 +172,40 @@ export default {
       weChat: '',
       city: ''
     }
-  ]
+  ],
+  questionnaireState: [
+    {
+      id: 1,
+      name: '发布中'
+    },
+    {
+      id: 2,
+      name: '草稿'
+    },
+    {
+      id: 3,
+      name: '暂停'
+    }
+  ],
+  questionnaire: [
+    {
+      id: 1,
+      name: '百度feed流产品调查',
+      projectId: '百度客户/百度feed流产品体验',
+      stateId: '发布中',
+      creater: '管理员',
+      createTime: '2019-01-13',
+      price: '100',
+      sampleSize: '30', // 样本数
+      answerNum: '10', // 答卷数
+      sendOrReceive: '13', // 已发送/已接受
+      finishRate: '90%' // 完成比例
+    }
+  ],
+  set: {
+    removeTime: 120,
+    urgeTime: 60,
+    isAutofilter: '1',
+    isScreencap: '1'
+  }
 }

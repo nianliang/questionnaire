@@ -64,6 +64,28 @@ const routes = [
         component: (resolve) => require(['@/views/customer_manage/index.vue'], resolve)
       }
     ]
+  },
+  /*问卷管理*/
+  {
+    path: '/questionnaire_manage',
+    meta: {
+      title: '问卷管理'
+    },
+    component: (resolve) => require(['@/views/main.vue'], resolve),
+    children: [
+      {
+        path: '/questionnaire',
+        component: (resolve) => require(['@/views/questionnaire_manage/questionnaire/index.vue'], resolve)
+      },
+      {
+        path: '/questionnaire/publish',
+        component: (resolve) => require(['@/views/questionnaire_manage/publish/index.vue'], resolve)
+      },
+      {
+        path: '/questionnaire/monitor',
+        component: (resolve) => require(['@/views/questionnaire_manage/monitor/index.vue'], resolve)
+      }
+    ]
   }
 ]
 

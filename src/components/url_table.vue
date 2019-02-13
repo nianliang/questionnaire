@@ -2,7 +2,7 @@
 </style>
 <template>
   <div class="m-tb-16">
-    <Table :data="data" :columns="columns" stripe :loading="loading" @on-selection-change="handleSelectChange" :height="height" class="table">
+    <Table :data="data" :columns="columns" stripe :loading="loading" @on-selection-change="handleSelectChange" class="table">
     </Table>
     <div v-if="showPage" class="text-right m-t-8">
       <Page :total="total" :page-size="pageSize" show-sizer show-elevator show-total @on-change="handlePageChange" @on-page-size-change="handlePageSizeChange"></Page>
@@ -59,6 +59,9 @@
             break
           case this.routeMap.projectList:
             this.getProjectList(page, pageSize)
+            break
+          case this.routeMap.questionnaireList:
+            this.getQuestionList(page, pageSize)
             break
           default:
             break
@@ -193,6 +196,34 @@
 //        for (let i = 0; i < 5; i++) {
 //          list = list.concat(_.cloneDeep(list))
 //        }
+        this.total = list.length
+        this.data = list.slice((page - 1) * pageSize, page * pageSize)
+        this.loading = false
+      },
+      getQuestionList (page, pageSize) {
+        let list = demoData.questionnaire
+        if (this.params) {
+          if (this.params.name) {
+            list = list.filter(item => {
+              return item.name.includes(this.params.name)
+            })
+          }
+          if (this.params.stateId) {
+            list = list.filter(item => {
+              return item.stateId.includes(this.params.stateId)
+            })
+          }
+          if (this.params.begin) {
+            list = list.filter(item => {
+              return item.begin >= this.params.begin
+            })
+          }
+          if (this.params.end) {
+            list = list.filter(item => {
+              return item.begin <= this.params.end
+            })
+          }
+        }
         this.total = list.length
         this.data = list.slice((page - 1) * pageSize, page * pageSize)
         this.loading = false
