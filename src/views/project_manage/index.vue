@@ -1,5 +1,11 @@
 <style lang="less">
-
+.project{
+  .table .ivu-table-body{
+    max-height: 500px;
+    min-height: 350px;
+    overflow-y: auto;
+  }
+}
 </style>
 <template>
   <div class="project">

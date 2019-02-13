@@ -1,8 +1,16 @@
 <style lang="less">
-
+  .organize{
+    .staff{
+      .table .ivu-table-body{
+        max-height: 481px;
+        min-height: 350px;
+        overflow-y: auto;
+      }
+    }
+  }
 </style>
 <template>
-  <div>
+  <div class="organize">
     <div class="flex">
       <div class="flex-2" style="overflow: auto">
         <div id="treeDemo" class="ztree"></div>

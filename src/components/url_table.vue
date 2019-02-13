@@ -1,12 +1,4 @@
 <style lang="less">
-  .table{
-    /*overflow-x: auto;*/
-    .ivu-table-body{
-      max-height: 481px;
-      min-height: 200px;
-      overflow-y: auto;
-    }
-  }
 </style>
 <template>
   <div class="m-tb-16">
@@ -45,8 +37,8 @@
         curPage: 1,
         pageSize: 10,
         total: 0,
-        loading: false,
-        height: 521,
+        loading: false
+//        height: 521,
       }
     },
     methods: {
@@ -71,13 +63,13 @@
           default:
             break
         }
-        if (this.data.length) {
-          if (this.data.length >= 10) {
-            this.height = 521
-          } else {
-            this.height = 40 + 48 * this.data.length
-          }
-        }
+//        if (this.data.length) {
+//          if (this.data.length >= 10) {
+//            this.height = 521
+//          } else {
+//            this.height = 40 + 48 * this.data.length
+//          }
+//        }
         // todo 正式api后，需放开下列代码
         /* let params = {
           page: page,
@@ -157,9 +149,9 @@
             })
           }
         }
-        for (let i = 0; i < 5; i++) {
-          staffList = staffList.concat(_.cloneDeep(staffList))
-        }
+//        for (let i = 0; i < 5; i++) {
+//          staffList = staffList.concat(_.cloneDeep(staffList))
+//        }
         this.total = staffList.length
         this.data = staffList.slice((page - 1) * pageSize, page * pageSize)
         this.loading = false
@@ -198,9 +190,9 @@
             })
           }
         }
-        for (let i = 0; i < 5; i++) {
-          list = list.concat(_.cloneDeep(list))
-        }
+//        for (let i = 0; i < 5; i++) {
+//          list = list.concat(_.cloneDeep(list))
+//        }
         this.total = list.length
         this.data = list.slice((page - 1) * pageSize, page * pageSize)
         this.loading = false
