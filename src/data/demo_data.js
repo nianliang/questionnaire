@@ -140,11 +140,13 @@ export default {
   role: [
     {
       id: 1,
-      name: '系统管理员'
+      name: '系统管理员',
+      enable: 1
     },
     {
       id: 2,
-      name: '质量督导员'
+      name: '质量督导员',
+      enable: 1
     },
     {
       id: 3,

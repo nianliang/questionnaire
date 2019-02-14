@@ -54,7 +54,7 @@
             this.formData = data
           })
           .catch(error => {
-            console.warn('获取设置数据失败。。。')
+            console.warn('获取设置数据失败。。。', error)
           })
       },
       handleSubmit () {
