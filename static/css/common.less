@@ -227,6 +227,23 @@
 
 .table .ivu-table-body, .table .ivu-table-tip{
   max-height: 481px;
-  min-height: 350px;
+  min-height: 351px;
   overflow-y: auto;
 }
+
+/*滚动条样式*/
+*::-webkit-scrollbar {/*滚动条整体样式*/
+  width: 8px;     /*高宽分别对应横竖滚动条的尺寸*/
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+  background: #ddd;
+}
+*::-webkit-scrollbar-track {/*滚动条里面轨道*/
+  -webkit-box-shadow: inset 0 0 5px rgba(252,252,252,0.2);
+  border-radius: 10px;
+  background: transparent;
+}
+/*滚动条样式结束*/
