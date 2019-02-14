@@ -2,7 +2,7 @@
 </style>
 <template>
   <Modal v-model="show" title="设置" @on-cancel="cancel">
-    <Form :model="formData" ref="formData" :label-width="250" :rules="formRule">
+    <Form :model="formData" ref="formData" :label-width="250">
       <FormItem label="问卷发送后多长时间未接受剔除该人员:" prop="removeTime">
         <InputNumber :max="max" :min="1" v-model="formData.removeTime"></InputNumber>分钟
       </FormItem>

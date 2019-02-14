@@ -78,7 +78,7 @@
     <div class="main-body">
       <Split v-model="panelPer">
         <div slot="left" class="menu p-tb-16">
-          <Menu ref="menu" theme="light" width="auto" :active-name="activeMenu" @on-select="handleMenuClick">
+          <Menu ref="menu" theme="light" width="auto" :active-name="activeMenu" :open-names="menuOpened" @on-select="handleMenuClick">
             <template v-for="(menu,key) in menuData">
               <customMenu :menu="menu" :key="key"></customMenu>
             </template>
@@ -110,7 +110,8 @@
         panelPer: 0.2,
         active: {},
         menuData: demoData.menuData,
-        activeMenu: '1'
+        activeMenu: '1',
+        menuOpened: []
       }
     },
     methods: {
@@ -126,7 +127,11 @@
       },
       updateActive (menuName) {
         this.activeMenu = menuName
-        this.$refs['menu'].updateActiveName()
+        if (menuName.indexOf('-') !== -1) {
+          this.menuOpened.push(menuName.split('-')[0])
+//          this.$refs.menu.updateOpened() // 展开当前menu
+        }
+//        this.$refs['menu'].updateActiveName()
       }
     }
   }
