@@ -1,5 +1,4 @@
 <style>
-
 </style>
 <template>
   <div class="question">
