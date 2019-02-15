@@ -4,7 +4,7 @@
   <div class="question">
     <div class="flex">
       <div class="flex-1">
-        <Button type="primary" @click="openForm()" class="m-r-8" icon="md-add">新增</Button><Button @click="del(ids)" class="m-r-8">批量删除</Button><Dropdown @on-click="handleDropDownMore">
+        <Button type="primary" @click="openForm()" class="m-r-8" icon="md-add">新增</Button><Button @click="del(ids)" class="m-r-8">批量删除</Button><Button @click="makeQuesForm(ids)" class="m-r-8">问卷制作</Button><Dropdown @on-click="handleDropDownMore">
         <Button type="primary">
           更多
           <Icon type="ios-arrow-down"></Icon>
@@ -40,6 +40,7 @@
     <AnalysisForm ref="AnalysisForm"></AnalysisForm>
     <CommunicateForm ref="CommunicateForm"></CommunicateForm>
     <SetForm ref="SetForm"></SetForm>
+    <MakeForm ref="MakeForm"></MakeForm>
   </div>
 </template>
 <script>
@@ -48,9 +49,10 @@
   import AnalysisForm from './component/analysis_form.vue'
   import CommunicateForm from './component/communicate_form.vue'
   import SetForm from './component/set_form.vue'
+  import MakeForm from './component/make_form.vue'
   export default {
     components: {
-      QuestionForm, AnalysisForm, CommunicateForm, SetForm
+      QuestionForm, AnalysisForm, CommunicateForm, SetForm, MakeForm
     },
     created () {
       this.$emit('updateActive', '6-1')
@@ -163,7 +165,16 @@
                       this.del(params.row.id)
                     }
                   }
-                }, '删除')
+                }, '删除'),
+                h('a', {
+                  'class': 'm-r-8',
+                  on: {
+                    click: (e) => {
+                      e.stopPropagation()
+                      this.makeQuesForm(params.row.id)
+                    }
+                  }
+                }, '制作问卷')
               ])
             }
           }
@@ -223,6 +234,21 @@
             this.$Message.warning('删除失败！')
             console.warn('删除问卷失败：', error)
           })
+      },
+      makeQuesForm (id) {
+        if (!id || id.constructor.name === 'Array' && id.length !== 1) {
+          this.$Message.warning('请选择一个问卷进行制作')
+        }
+        let temp = ''
+        if (id.constructor.name === 'Array') {
+          temp = id.join()
+        } else {
+          temp = id
+        }
+        this.$route.params.id = temp
+//        location.href = '/#/questionnaire/make/' + temp
+        this.$router.push('/questionnaire/make/' + temp)
+//        this.$refs['MakeForm'].open(temp)
       },
       handleSelectChange (selection) {
         this.ids = this._.map(selection, 'id')

@@ -84,6 +84,10 @@ const routes = [
       {
         path: '/questionnaire/monitor',
         component: (resolve) => require(['@/views/questionnaire_manage/monitor/index.vue'], resolve)
+      },
+      {
+        path: '/questionnaire/make/:id',
+        component: (resolve) => require(['@/views/questionnaire_manage/questionnaire/make_questionnaire.vue'], resolve)
       }
     ]
   }
