@@ -74,7 +74,8 @@
                 this.$store.commit('setToken', data.token)
                 this.$store.commit('setUser', data.user)
                 this.$Message.success('登录成功!')
-                this.$router.push('/index')
+//                this.$router.push('/index')organization_manage
+                this.$router.push('/organization')
               })
               .catch(error => {
                 console.warn('登录失败：', error)

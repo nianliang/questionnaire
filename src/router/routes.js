@@ -11,7 +11,7 @@ const routes = [
   },
   /*组织结构*/
   {
-    path: '/organization_manage',
+    path: '/organization',
     meta: {
       title: '组织结构管理'
     },
@@ -25,7 +25,7 @@ const routes = [
   },
   /*人员管理*/
   {
-    path: '/staff_manage',
+    path: '/staff',
     meta: {
       title: '人员管理'
     },
@@ -39,7 +39,7 @@ const routes = [
   },
   /*项目管理*/
   {
-    path: '/project_manage',
+    path: '/project',
     meta: {
       title: '项目管理'
     },
@@ -53,7 +53,7 @@ const routes = [
   },
   /*客户管理*/
   {
-    path: '/customer_manage',
+    path: '/customer',
     meta: {
       title: '客户管理'
     },
@@ -67,7 +67,7 @@ const routes = [
   },
   /*问卷管理*/
   {
-    path: '/questionnaire_manage',
+    path: '/questionnaire',
     meta: {
       title: '问卷管理'
     },
