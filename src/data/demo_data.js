@@ -59,20 +59,40 @@ export default {
       id: 9,
       name: '7',
       title: '兼职团队管理',
-      children: [
-        {
-          id: 10,
-          name: '7-1',
-          title: '兼职团队分析',
-          route_link: ''
-        }
-      ]
+      route_link: '/parttime'
+      // children: [
+      //   {
+      //     id: 10,
+      //     name: '7-1',
+      //     title: '兼职团队分析',
+      //     route_link: ''
+      //   }
+      // ]
     },
     {
       id: 11,
       name: '8',
-      title: '兼职端页面',
-      route_link: ''
+      title: '我的任务',
+      children: [
+        {
+          id: 15,
+          name: '8-1',
+          title: '我的任务',
+          route_link: '/mytask'
+        },
+        {
+          id: 16,
+          name: '8-2',
+          title: '正在进行的问卷',
+          route_link: ''
+        },
+        {
+          id: 17,
+          name: '8-3',
+          title: '已完成问卷',
+          route_link: ''
+        }
+      ]
     },
     {
       id: 12,
@@ -82,13 +102,13 @@ export default {
     },
     {
       id: 13,
-      name: '9',
+      name: '10',
       title: '帮助中心',
       route_link: ''
     },
     {
       id: 14,
-      name: '10',
+      name: '11',
       title: '分发设置',
       route_link: ''
     }
@@ -209,5 +229,7 @@ export default {
     urgeTime: 60,
     isAutofilter: '1',
     isScreencap: '1'
-  }
+  },
+  parttime: [
+  ]
 }

@@ -166,7 +166,7 @@
       handleSubmit () {
       },
       cancel () {
-      },
+      }
     }
   }
 </script>

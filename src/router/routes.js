@@ -90,6 +90,34 @@ const routes = [
         component: (resolve) => require(['@/views/questionnaire_manage/questionnaire/make_questionnaire.vue'], resolve)
       }
     ]
+  },
+  /*兼职团队管理*/
+  {
+    path: '/parttime',
+    meta: {
+      title: '兼职团队管理'
+    },
+    component: (resolve) => require(['@/views/main.vue'], resolve),
+    children: [
+      {
+        path: '/parttime',
+        component: (resolve) => require(['@/views/parttime_management/index.vue'], resolve)
+      }
+    ]
+  },
+  /*我的任务*/
+  {
+    path: '/mytask',
+    meta: {
+      title: '我的任务'
+    },
+    component: (resolve) => require(['@/views/main.vue'], resolve),
+    children: [
+      {
+        path: '/mytask',
+        component: (resolve) => require(['@/views/my_task_manage/index.vue'], resolve)
+      }
+    ]
   }
 ]
 

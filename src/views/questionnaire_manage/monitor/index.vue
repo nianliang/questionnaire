@@ -21,6 +21,9 @@
 </template>
 <script>
   export default {
+    created () {
+      this.$emit('updateActive', '6-3')
+    },
     data () {
       return {
 

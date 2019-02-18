@@ -8,11 +8,11 @@
           <Button type="primary" @click="send" class="m-r-8">发送问卷</Button><Button @click="sendAll" class="m-r-8">全部发送问卷</Button>
         </div>
       <div class="flex">
-        <Select v-model="city" filterable multiple class="m-r-8">
+        <Select v-model="city" filterable multiple class="m-r-8" placeholder="请选择城市">
           <Option v-for="item in cityList" :value="item.id" :key="item.id">{{ item.name }}</Option>
-        </Select><Select v-model="age" filterable multiple class="m-r-8">
+        </Select><Select v-model="age" filterable multiple class="m-r-8" placeholder="请选择年龄">
         <Option v-for="item in ageList" :value="item.id" :key="item.id">{{ item.name }}</Option>
-      </Select><Select v-model="sex" filterable multiple>
+      </Select><Select v-model="sex" filterable multiple placeholder="请选择性别">
         <Option v-for="item in sexList" :value="item.id" :key="item.id">{{ item.name}}</Option>
       </Select>
       </div>

@@ -238,6 +238,7 @@
       makeQuesForm (id) {
         if (!id || id.constructor.name === 'Array' && id.length !== 1) {
           this.$Message.warning('请选择一个问卷进行制作')
+          return
         }
         let temp = ''
         if (id.constructor.name === 'Array') {
