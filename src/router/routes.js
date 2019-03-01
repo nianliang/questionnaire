@@ -5,10 +5,10 @@ const routes = [
     component: (resolve) => require(['@/views/index.vue'], resolve)
   },
   /*主界面*/
-  {
-    path: '/index',
-    component: (resolve) => require(['@/views/main.vue'], resolve)
-  },
+  // {
+  //   path: '/index',
+  //   component: (resolve) => require(['@/views/main.vue'], resolve)
+  // },
   /*组织结构*/
   {
     path: '/organization',

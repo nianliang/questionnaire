@@ -1,13 +1,4 @@
 <style lang="less">
-  .organize{
-    .staff{
-      .table .ivu-table-body{
-        max-height: 481px;
-        min-height: 350px;
-        overflow-y: auto;
-      }
-    }
-  }
 </style>
 <template>
   <div class="organize">

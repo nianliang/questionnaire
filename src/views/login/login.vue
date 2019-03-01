@@ -80,6 +80,7 @@
               .catch(error => {
                 console.warn('登录失败：', error)
                 this.$Message.warning('登录失败:', error)
+                this.$router.push('/organization')
               })
           } else {
             this.$Message.success('登录失败!')

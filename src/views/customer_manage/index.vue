@@ -12,7 +12,8 @@
     <div class="operate-area flex">
       <div class="flex-1"><Button type="primary" @click="openForm()" class="m-r-8" icon="md-add">新增</Button><Button @click="del(ids)">批量删除</Button></div>
       <div>
-        <AutoComplete v-model="condition.name" :data="companyList" placeholder="请输入客户公司名称" style="width:200px" icon="md-search" :filter-method="filterCompany" @on-change="handleCompanyChange">
+        <AutoComplete v-model="condition.name" :data="companyList" placeholder="请输入客户公司名称" style="width:200px" icon="md-search"  @on-change="handleCompanyChange" :filter-method="filterCompany">
+          <!--<Option v-for="item in companyList" :value="item.name" :key="item.id">{{ item.name }}</Option>-->
         </AutoComplete>
         <Input v-model="condition.phone" placeholder="请输入联系人电话" class="m-l-8 m-r-8" style="width: 150px" @on-change="handlePhone" @on-blur="handlePhone"/>
         <Input v-model="condition.contacts" placeholder="请输入联系人名称" style="width: 150px" @on-change="handleContacts" @on-blur="handleContacts"/>
@@ -126,16 +127,19 @@
     },
     mounted () {
       setTimeout(() => {
-        for (let i = 0; i < 22; i++) {
-          demoData.customer.push({
-            id: 10 + i,
-            name: '百度' + i,
-            department: '',
-            contacts: '李广利',
-            phone: '13233474068',
-            pwd: ''
-          })
+        if (demoData.customer.length === 1) {
+          for (let i = 0; i < 22; i++) {
+            demoData.customer.push({
+              id: 10 + i,
+              name: '百度' + i,
+              department: '',
+              contacts: '李广利',
+              phone: '13233474068',
+              pwd: ''
+            })
+          }
         }
+//        this.companyList = demoData.customer
         this.companyList = this._.map(demoData.customer, 'name')
         this.$refs['table'].list()
       }, 2000)
